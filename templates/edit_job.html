@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit Job</title></head>
+<body>
+    <h1>Edit Job Application</h1>
+    <form method="POST">
+        <label>Company:</label>
+        <input type="text" name="company" value="{{ job.company }}" required><br><br>
+        <label>Role:</label>
+        <input type="text" name="role" value="{{ job.role }}" required><br><br>
+        <label>Location:</label>
+        <input type="text" name="location" value="{{ job.location or '' }}"><br><br>
+        <label>Salary:</label>
+        <input type="text" name="salary" value="{{ job.salary or '' }}"><br><br>
+        <label>Applied Date:</label>
+        <input type="date" name="applied_date" value="{{ job.applied_date }}"><br><br>
+        <label>Status:</label>
+        <select name="status">
+            <option {% if job.status == 'Applied' %}selected{% endif %}>Applied</option>
+            <option {% if job.status == 'Interview' %}selected{% endif %}>Interview</option>
+            <option {% if job.status == 'Selected' %}selected{% endif %}>Selected</option>
+            <option {% if job.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+        </select><br><br>
+        <button type="submit">Update Application</button>
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

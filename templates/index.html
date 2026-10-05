@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Job Application Tracker</h1>
+    <a href="{{ url_for('add_job') }}">Add New Application</a>
+    <br><br>
+    <table>
+        <tr>
+            <th>Company</th><th>Role</th><th>Location</th>
+            <th>Salary</th><th>Date</th><th>Status</th><th>Action</th>
+        </tr>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.company }}</td>
+            <td>{{ job.role }}</td>
+            <td>{{ job.location }}</td>
+            <td>{{ job.salary }}</td>
+            <td>{{ job.applied_date }}</td>
+            <td>{{ job.status }}</td>
+            <td>
+                <a href="{{ url_for('edit_job', job_id=job.id) }}">Edit</a> |
+                <a href="{{ url_for('delete_job', job_id=job.id) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
